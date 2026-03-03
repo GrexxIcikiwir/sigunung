@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI GUNUNG - Sistem Informasi 7 Summits Jabar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">SI<span>GUNUNG</span></a>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fas fa-cloud-sun"></i> Cuaca</a></li>
+                <li><a href="#"><i class="fas fa-ticket-alt"></i> E-Simaksi</a></li>
+                <li><a href="#"><i class="fas fa-map-signs"></i> Jalur</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>7 Summits Jawa Barat</h1>
+        <p>Sistem Informasi Terpadu Puncak Tertinggi Jawa Barat</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari nama gunung atau lokasi...">
+        </div>
+    </header>
+
+    <div class="container" id="mountainGrid">
+        <div class="card status-buka" data-lat="-6.892" data-lon="108.407">
+            <img src="https://astraotoshop.com/asset/article-aop/gunung-tertinggi-di-jawa-barat_20241016.webp" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Ciremai</h3>
+                <span class="note1">3.078 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Kuningan / Majalengka</p>
+                <a href="https://bookingciremai.menlhk.go.id/" target="_blank" class="badge">🌐 BOOKING RESMI</a>
+            </div>
+        </div>
+
+        <div class="card status-buka" data-lat="-6.771" data-lon="106.974">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/View_Mt_Gede_Pangrango_from_Mt_Gede_peak.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Pangrango</h3>
+                <span class="note1">3.019 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Bogor / Sukabumi</p>
+                <a href="https://booking.gedepangrango.org/" target="_blank" class="badge">🌐 BOOKING RESMI</a>
+            </div>
+        </div>
+
+        <div class="card status-peringatan" data-lat="-6.791" data-lon="106.982">
+            <img src="https://jnewsonline.com/wp-content/uploads/2025/01/gunung-gede.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Gede</h3>
+                <span class="note1">2.958 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Cianjur / Sukabumi</p>
+                <a href="https://booking.gedepangrango.org/" target="_blank" class="badge">⚠️ INFO STATUS</a>
+            </div>
+        </div>
+
+        <div class="card status-buka" data-lat="-7.320" data-lon="107.860">
+            <img src="https://ik.imagekit.io/tvlk/blog/2024/08/shutterstock_2494547305.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Cikuray</h3>
+                <span class="note1">2.821 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Garut</p>
+                <a href="#" class="badge">🔗 INFO JALUR</a>
+            </div>
+        </div>
+
+        <div class="card status-buka" data-lat="-7.320" data-lon="107.730">
+            <img src="https://twapapandayan.com/wp-content/uploads/2021/04/hutan-mati.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Papandayan</h3>
+                <span class="note1">2.665 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Garut</p>
+                <a href="https://twapapandayan.com/" target="_blank" class="badge">🌐 WEBSITE RESMI</a>
+            </div>
+        </div>
+
+        <div class="card status-buka" data-lat="-7.165" data-lon="107.401">
+            <img src="https://mounture.com/wp-content/uploads/2025/02/kawah-putih.webp" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Patuha</h3>
+                <span class="note1">2.434 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Ciwidey, Bandung</p>
+                <a href="#" class="badge">🔗 INFO JALUR</a>
+            </div>
+        </div>
+
+        <div class="card status-buka" data-lat="-7.127" data-lon="107.648">
+            <img src="https://superlive.id/storage/articles/0be34aec-301f-4ab3-b041-597e1a07e599.jpg" class="card-img">
+            <div class="card-content">
+                <h3>Gunung Malabar</h3>
+                <span class="note1">2.343 MDPL</span>
+                <div class="weather-info"><i class="fas fa-spinner fa-spin"></i> Memuat cuaca...</div>
+                <p>Lokasi: Pangalengan, Bandung</p>
+                <a href="#" class="badge">🔗 INFO JALUR</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
