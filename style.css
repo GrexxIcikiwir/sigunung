@@ -1,60 +1,129 @@
-/* --- GLOBAL --- */
-body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; }
+const dataSimaksi = [
+    { n: "Gunung Ciremai", l: "https://bookingciremai.menlhk.go.id/", t: "Website" },
+    { n: "Gunung Gede Pangrango", l: "https://booking.gedepangrango.org/", t: "Website" },
+    { n: "Gunung Cikuray", l: "https://www.instagram.com/cikuray_mountain/", t: "Instagram" },
+    { n: "Gunung Papandayan", l: "https://www.instagram.com/papandayan_id/", t: "Instagram" },
+    { n: "Gunung Patuha", l: "https://www.instagram.com/kawahputih_official/", t: "Instagram" },
+    { n: "Gunung Malabar", l: "https://www.instagram.com/pangalengan_hike/", t: "Instagram" }
+];
 
-/* --- NAVIGATION --- */
-.main-nav {
-    background: #ffffff; height: 70px; display: flex; align-items: center;
-    position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+const dataDeskripsi = {
+    "Gunung Ciremai": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Gunung tertinggi di Jawa Barat (3.078 MDPL) yang terletak di Kuningan dan Majalengka. Merupakan gunung api soliter dengan kawah ganda yang sangat luas di puncaknya.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Medan pendakian Ciremai dikenal sebagai 'Ujian Mental'. Jalur berupa tanah padat dan akar pohon yang sangat terjal. Tidak ada sumber air di sepanjang jalur pendakian (pendaki wajib membawa stok air minimal 4-5 liter per orang).</div>
+        <div class="desc-section"><strong>Estimasi & Tips</strong>Waktu tempuh sekitar 10-12 jam. Jalur Apuy lebih pendek namun terjal, sementara Palutungan lebih panjang namun landai di awal. Manajemen air dan stamina fisik adalah kunci utama menaklukkan atap Jawa Barat ini.</div>`,
+
+    "Gunung Pangrango": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Puncak kedua tertinggi (3.019 MDPL) yang berada dalam satu kawasan Taman Nasional dengan Gunung Gede. Merupakan gunung api yang sudah tidak aktif dengan puncak tertutup hutan hujan tropis lebat.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Jalur sangat lembap, licin, dan dipenuhi oleh lumut serta akar pohon besar yang melintang. Pendakian terasa sangat sunyi dan magis karena vegetasinya yang sangat rapat hingga ke puncak.</div>
+        <div class="desc-section"><strong>Daya Tarik Utama</strong>Lembah Mandalawangi adalah magnet utama Pangrango. Sebuah padang Edelweiss yang luas dan syahdu, tempat legendaris aktivis Soe Hok Gie merenung. Waktu tempuh sekitar 8-10 jam melalui jalur Cibodas.</div>`,
+
+    "Gunung Gede": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Memiliki ketinggian 2.958 MDPL. Sangat populer karena aksesibilitasnya yang mudah dari Jakarta dan Bandung. Memiliki kawah aktif yang terus mengepulkan asap belerang.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Variatif mulai dari jalan setapak berbatu, sumber air panas yang melintasi jalur, hingga tanjakan curam berbatuan yang dikenal dengan 'Tanjakan Setan'. Tersedia banyak pos peristirahatan yang memadai.</div>
+        <div class="desc-section"><strong>Estimasi & Lokasi Camp</strong>Waktu tempuh 7-9 jam. Lokasi camp terbaik adalah Alun-alun Suryakencana, sebuah sabana luas yang ditumbuhi jutaan bunga Edelweiss. Suhu malam hari bisa turun drastis hingga mendekati 0 derajat Celcius.</div>`,
+
+    "Gunung Cikuray": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Gunung tertinggi di Garut (2.821 MDPL). Berbentuk kerucut sempurna dan menawarkan pemandangan matahari terbit yang spektakuler dari puncaknya.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Dikenal sebagai jalur 'Tanpa Bonus'. Dari awal pendakian hingga puncak, pendaki tidak akan menemukan jalur landai. Jalur berupa tanah merah yang licin saat hujan dan debu tebal saat musim kemarau.</div>
+        <div class="desc-section"><strong>Estimasi & Daya Tarik</strong>Estimasi waktu 6-8 jam. Puncak Cikuray menyajikan pemandangan 'Samudra Awan' yang menakjubkan, di mana pendaki seolah berdiri di atas hamparan awan putih yang menutupi seluruh kota di bawahnya.</div>`,
+
+    "Gunung Papandayan": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Memiliki ketinggian 2.665 MDPL. Dijuluki 'Gunung untuk Semua Orang' karena medannya yang relatif mudah dan pemandangannya yang sangat beragam.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Jalur lebar dan landai, melewati kawah aktif dengan bau belerang yang menyengat. Terdapat fasilitas yang sangat lengkap seperti toilet, warung, bahkan kolam air panas alami di area perkemahan.</div>
+        <div class="desc-section"><strong>Spot Ikonik</strong>Hutan Mati (kumpulan pohon hangus sisa erupsi) yang eksotis untuk fotografi, serta Tegal Alun yang merupakan padang Edelweiss terluas di Jawa Barat. Cocok untuk pendaki pemula dan keluarga.</div>`,
+
+    "Gunung Patuha": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Gunung yang memiliki ketinggian 2.434 MDPL di Ciwidey. Di puncaknya terdapat kawah vulkanik purba yang eksotis dengan air berwarna putih kehijauan.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Pendakian menuju puncak Sunan Ibu sangat singkat (30-60 menit). Jalur sudah tertata rapi dengan anak tangga kayu, menjadikannya lokasi favorit untuk 'Sunrise Hunting'.</div>
+        <div class="desc-section"><strong>Tips Pendakian</strong>Karena udaranya yang sangat dingin dan berangin di puncak, pendaki disarankan menggunakan jaket windbreaker yang baik. Bau belerang dari Kawah Putih cukup kuat, sehingga masker sangat disarankan.</div>`,
+
+    "Gunung Malabar": `
+        <div class="desc-section"><strong>Profil & Ketinggian</strong>Terletak di Pangalengan dengan ketinggian 2.343 MDPL. Area ini merupakan komplek pegunungan yang dikelilingi oleh perkebunan teh tertua di Jawa Barat.</div>
+        <div class="desc-section"><strong>Karakteristik Jalur</strong>Jalur pendakian Malabar sangat alami dan masih rimbun dengan hutan tropis yang lebat. Medan berupa tanah gembur yang seringkali lembap. Jarang ditemui pendaki masal sehingga suasananya sangat tenang.</div>
+        <div class="desc-section"><strong>Daya Tarik</strong>Pemandangan perkebunan teh yang menghijau seperti karpet raksasa saat dilihat dari lereng gunung. Cocok bagi pendaki yang mencari ketenangan dan ingin berlatih fisik di medan hutan asli.</div>`
+};
+
+// MODAL CONTROL
+const pathModal = document.getElementById("pathModal");
+const simaksiModal = document.getElementById("simaksiModal");
+const descriptionDiv = document.getElementById("modalDescription");
+const backBtn = document.getElementById("backToList");
+
+// CLOSE LOGIC
+document.getElementById("closeJalur").onclick = () => pathModal.style.display = "none";
+document.getElementById("closeSimaksi").onclick = () => simaksiModal.style.display = "none";
+window.onclick = (e) => {
+    if (e.target == pathModal) pathModal.style.display = "none";
+    if (e.target == simaksiModal) simaksiModal.style.display = "none";
+};
+
+// SHOW DETAIL INFO
+function showDetail(name) {
+    document.getElementById("modalTitle").innerText = "Info Lengkap: " + name;
+    descriptionDiv.innerHTML = dataDeskripsi[name] || "Deskripsi belum tersedia.";
+    pathModal.style.display = "block";
+    document.querySelector(".modal-content").scrollTop = 0;
 }
-.nav-container {
-    width: 90%; max-width: 1200px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-}
-.logo { font-size: 22px; font-weight: 800; text-decoration: none; color: #1e293b; }
-.logo span { color: #2ecc71; }
-.nav-links { display: flex; list-style: none; gap: 25px; }
-.nav-links a { text-decoration: none; color: #475569; font-weight: 600; font-size: 14px; transition: 0.3s; }
-.nav-links a:hover { color: #2ecc71; }
 
-/* --- HEADER --- */
-header { text-align: center; padding: 60px 20px; background: #1e293b; color: white; }
-.search-box { margin-top: 25px; }
-#searchInput {
-    width: 100%; max-width: 400px; padding: 12px 25px; border-radius: 25px;
-    border: none; font-size: 16px; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+// NAV JALUR MENU
+function openJalurMenu() {
+    document.getElementById("modalTitle").innerText = "Pilih Gunung";
+    descriptionDiv.innerHTML = "<p style='text-align:center; margin-bottom:20px;'>Pilih gunung untuk melihat karakteristik jalur dan tips manajemen pendakiannya.</p>";
+    const listHtml = Object.keys(dataDeskripsi).map(name => `
+        <div class="list-item-jalur" onclick="showDetail('${name}'); document.getElementById('backToList').style.display='block';">
+            <i class="fas fa-mountain"></i> ${name}
+        </div>
+    `).join("");
+    descriptionDiv.innerHTML += listHtml;
+    backBtn.style.display = "none";
+    pathModal.style.display = "block";
 }
 
-/* --- CONTAINER & CARDS (Gaya Anda) --- */
-.container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px 20px; }
-.card {
-    background: white; width: 280px; box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
-    border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
-    border-left: 8px solid; transition: 0.3s;
+document.getElementById('navJalur').addEventListener('click', (e) => { e.preventDefault(); openJalurMenu(); });
+
+// NAV SIMAKSI
+document.getElementById('navSimaksi').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById("simaksiList").innerHTML = dataSimaksi.map(i => `
+        <div class="simaksi-item">
+            <span><strong>${i.n}</strong></span>
+            <a href="${i.l}" target="_blank" class="btn-go">BOOKING RESMI</a>
+        </div>
+    `).join("");
+    simaksiModal.style.display = "block";
+});
+
+// CARD BUTTON
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-jalur')) {
+        e.preventDefault();
+        const name = e.target.closest('.card').querySelector('h3').innerText;
+        backBtn.style.display = "none";
+        showDetail(name);
+    }
+});
+
+// WEATHER & SEARCH (BASIC)
+async function getMountainWeather() {
+    document.querySelectorAll('.card').forEach(async (card) => {
+        const lat = card.dataset.lat;
+        const lon = card.dataset.lon;
+        const weatherDiv = card.querySelector('.weather-info');
+        try {
+            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+            const data = await res.json();
+            weatherDiv.innerHTML = `☀️ ${Math.round(data.current_weather.temperature)}°C | Cerah Berawan`;
+        } catch (e) { weatherDiv.innerHTML = "Layanan Cuaca Offline"; }
+    });
 }
-.card:hover { transform: translateY(-5px); }
-.card.hidden { display: none; }
 
-.card-img { width: 100%; height: 160px; object-fit: cover; }
-.card-content { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = name.includes(filter) ? "flex" : "none";
+    });
+});
 
-/* Status Colors */
-.status-tutup { border-left-color: #ff4d4d; }
-.status-buka { border-left-color: #2ecc71; }
-.status-peringatan { border-left-color: #f1c40f; }
-
-.weather-info {
-    background: #f1f5f9; padding: 8px; border-radius: 6px;
-    margin: 10px 0; font-size: 13px; font-weight: 600; color: #1e293b;
-}
-
-.badge {
-    font-weight: bold; padding: 8px 12px; border-radius: 5px; color: white;
-    font-size: 11px; text-decoration: none; text-align: center; align-self: flex-start; margin-top: 10px;
-}
-.status-tutup .badge { background: #ff4d4d; }
-.status-buka .badge { background: #2ecc71; }
-.status-peringatan .badge { background: #f1c40f; }
-
-.note1 { font-size: 16px; color: #333; font-weight: bold; margin-top: 5px; display: block; }
-h3 { margin: 0; font-size: 18px; color: #2c3e50; }
-p { margin-top: 5px; font-size: 13px; color: #7f8c8d; }
+window.onload = getMountainWeather;
